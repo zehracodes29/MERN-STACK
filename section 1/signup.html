@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+   <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic" rel="stylesheet" />
+   <style>
+    
+    *{
+        font-family: Roboto;
+    }
+        body {
+            background-color: rgb(8, 6, 6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+
+        h2 {
+            color: rgb(240, 189, 240);
+            text-shadow: 2px 3px 5px whitesmoke;
+        }
+
+        .card {
+            /*border: 5px solid brown;*/
+            background-color: black;
+            width: 20%;
+            padding: 30px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            box-shadow: 2px 3px 5px 0 rgb(226, 218, 218);
+        }
+
+.my-class{
+    color: rgb(249, 247, 247);
+}
+        .text-input {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            margin-bottom: 30px;
+        }
+
+        .btn-submit {
+            background-color: rebeccapurple;
+            color: aliceblue;
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h2 class="form-title">&nbsp;&nbsp;Sign Up&nbsp;&nbsp;</h2>
+        <form>
+            <label for="" class="my-class">First name</label>
+            <input type="text" class="text-input" required>
+            <label for="" class="my-class">Last name</label>
+            <input type="text" class="text-input" required>
+
+            <label for="" class="my-class">Email Address</label>
+            <input type="email" class="text-input" required>
+
+            <label for="" class="my-class">Password</label>
+            <input type="password" class="text-input">
+
+            <button class="btn-submit">Sign Up</button>
+        </form>
+
+
+
+    </div>
+</body>
+
+</html>

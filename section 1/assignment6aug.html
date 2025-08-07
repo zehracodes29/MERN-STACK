@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .parent-2 {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .child-2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(245, 243, 243);
+            margin: 20px;
+            padding: 20px;
+            height: 60vh;
+            width: 40vh;
+            box-shadow: 10px 10px 20px white;
+            border: 1px solid rgb(216, 213, 213);
+            border-radius: 20px;
+        }
+
+        .child-3 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .child-3 h1 {
+            font-size: medium;
+            margin-top: 0px;
+        }
+
+        .price h1 {
+            font-size: xx-large;
+            margin-top: 0px;
+        }
+
+        .button {
+            background-color: rgb(255, 255, 255);
+            color: rgba(194, 194, 194, 0.728);
+            border: 1px solid rgba(194, 194, 194, 0.728);
+            border-radius: 25px;
+        }
+
+        .bottom-btn {
+            margin: 60px;
+        }
+
+        .bottom-btn-1 {
+            margin: 40px;
+        }
+
+        .bottom-btn button {
+            background-color: rgb(255, 255, 255);
+            color: rgba(185, 180, 180, 0.728);
+            border: 1px solid rgba(194, 194, 194, 0.728);
+            border-radius: 0px;
+            padding: 10px;
+        }
+
+        .bottom-btn-1 button {
+            background-color: rgb(138, 13, 227);
+            color: rgb(255, 255, 255);
+            border: 1px solid rgba(194, 194, 194, 0.728);
+            border-radius: 0px;
+            padding: 10px;
+        }
+
+        select {
+            color: rgb(4, 8, 8);
+            padding: 10px;
+            border: 1px solid rgb(216, 213, 213);
+            border-radius: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child">
+            <h2>Choose your Plan</h2>
+        </div>
+        <div class="child">
+            <p>Be the first to know when boardme launches.Early access user will recieve free trail & early bidding
+                options.</p>
+        </div>
+        <div class="child">
+            <div class="parent-2">
+                <div class="child-2">
+                    <div class="child-3">
+                        <div>
+                            <h1>Free</h1>
+                        </div>
+                        <div class="price">
+                            <h1>$0</h1>
+                        </div>
+                        <div class="plans">
+                            <ul>
+                                <li>500 request</li>
+                                <li>Unlimted Projects</li>
+                                <li>extended free trial<br><br><button>For Early User</button></li>
+                            </ul>
+                            </ul>
+                        </div>
+                        <div class="bottom-btn"><button>Create Account</button></div>
+                    </div>
+                </div>
+                <div class="child-2">
+                    <div class="child-3">
+                        <div>
+                            <h1>Standard</h1>
+                        </div>
+                        <div class="price">
+                            <h1>$99/month</h1>
+                        </div>
+                        <div class="dropdown">
+                            <label for="select"></label>
+                            <select id="drop-plan" name="drop-plan" required>
+                                <option value="1">2500 request</option>
+                                <option value="2">2000 request</option>
+                                <option value="3">1500 request</option>
+                                <option value="4">1000 request</option>
+
+                            </select>
+                        </div>
+                        <div class="plans">
+                            <ul>
+                                <li>2500 request</li>
+                                <li>Unlimted Projects</li>
+                                <li>extended free trial<br><br><button>For Early User</button></li>
+                            </ul>
+                            </ul>
+                        </div>
+                        <div class="bottom-btn-1"><button>Create Account</button></div>
+                    </div>
+                </div>
+                <div class="child-2">
+                    <div class="child-3">
+                        <div>
+                            <h1>Enterprise</h1>
+                        </div>
+                        <div class="price">
+                            <h1>Let's Talk</h1>
+                        </div>
+                        <div class="plans">
+                            <ul>
+                                <li>500 request</li>
+                                <li>Unlimted Projects</li>
+                                <li>extended free trial<br><br><button>For Early User</button></li>
+                            </ul>
+                            </ul>
+                        </div>
+                        <div class="bottom-btn"><button>Create Account</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="child"><button>No credit Card required</button></div>
+    </div>
+
+</html>
+</body>
+
+</html>

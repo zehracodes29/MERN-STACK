@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Element Selector */
+        div{
+            background-color: crimson;
+            color:rgb(206, 236, 187);
+            text-align: center;
+        }
+        /* class selector */
+        .neon{
+            background-color: greenyellow;
+            color:brown;
+        }
+        /* ID selector */
+        #red{
+            background-color: red;
+            color: greenyellow
+        }
+        /* Child Selectors */
+        div>p{
+            background-color: blueviolet;
+            color: white;}
+        /* Descendent Selector */
+        div p{
+            background-color: rgb(212, 90, 243);
+            color:rgb(251, 239, 220);
+        }
+        /* Universal selector */
+        * {
+            margin:20px;
+            padding: 10px;
+        }
+        /* pseudo selector */
+        a:visited{
+            color:rgb(0, 8, 15);
+        }
+        a:link{
+            color:seagreen
+        }
+        a:active{
+            background-color: darksalmon;
+        }
+        a:hover{
+            background-color: lightcoral;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>
+        I am a div<p>I am a  paragraph inside div</p>
+    </div>
+    <div class="neon">
+        I am another div
+    </div>
+    <div id="red">
+        I am a red div
+    </div>
+    <a href="https://www.youtube.com/watch?v=1cEG1T8beO4">CSS CODE with Harry</a>
+    <a href="https://www.codewithharry.com/tutorial/overview/css-introduction">Code with Harry</a>
+</body>
+</html>

@@ -45,6 +45,7 @@ let isPrime = true;
 for (let i = 2; i < num; i++) {
     if (num % i == 0) {
         isPrime = false;
+        break;
         
     }
 }
@@ -56,12 +57,14 @@ if (isPrime) {
 
 //wap to reverse a number
 let n = 142;
-let r = 0;
+let reverse = 0;
 while (n > 0) {
-    let digit = n % 10;
-    n = Math.floor(n / 10);
-    r = r * 10 + digit;
+    console.log(n, reverse);
+
+    let digit = n % 10;//remainder
+    n = Math.floor(n / 10);//remove last digit
+    reverse = reverse * 10 + digit;//add last digit
 }
 
 
-console.log("Reversed number is: " + r);
+console.log("Reversed number is: " + reverse);

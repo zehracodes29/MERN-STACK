@@ -29,4 +29,10 @@ console.log(movies.slice(1, 4));
 console.log(movies.slice(-3));
 console.log(movies.slice(2, -1));
 console.log(movies.slice(4));
-
+console.log(movies.slice(-2));//gives the same outpt as the above line of code
+console.log(movies.slice(0))
+console.log(movies.slice(1))
+console.log(movies.slice(2))
+console.log(movies.slice(3))
+console.log(movies.slice(4))
+console.log(movies.slice(5))

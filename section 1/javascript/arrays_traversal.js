@@ -7,7 +7,7 @@ for(let i=0; i<nums.length;i++){
     console.log(nums[i]);
 }
 
-comsole.log("using for of loop");
+console.log("using for of loop");
 
 //using for of loop
 for(let n of nums){

@@ -119,3 +119,4 @@ console.log("Car Models:", carModels);
 const carColors = Object.values(cars).map(car => car.color);
 console.log("Car Colors:", carColors);
 
+

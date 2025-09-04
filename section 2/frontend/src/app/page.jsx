@@ -1,3 +1,4 @@
+import Card from '@/components/Card';
 import React from 'react'
 
 const Home = () => {
@@ -6,12 +7,13 @@ const Home = () => {
       <h1 className='text-center font-bold text-3xl mt-8'>Welcome to Home</h1>
       <p style={{ color: 'red', fontSize: 20, textAlign:'center' }}>Using Inline CSS</p>
       
+      <div className='m-10 grid grid-cols-3 gap-4'>
+        <Card/>
+        <Card/>
+        <Card/>
+        
+      </div>
 
-      <img
-        src="nico-smit-QnkzvFCxKrA-unsplash.jpg" 
-        alt="" 
-        style={{ display: 'block',  width: 300, height: 200, margin: '0 auto' }} 
-      />
     </div>
   )
 }

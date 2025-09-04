@@ -4,8 +4,8 @@ const SignupPage = () => {
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12">
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
-        <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">
-          Signup
+        <h2 className="mb-4 text-center text-xl font-bold text-gray-800 md:mb-8 lg:text-3xl">
+          SignUp 
         </h2>
         <form className="mx-auto max-w-lg rounded-lg border">
           <div className="flex flex-col gap-4 p-4 md:p-8">

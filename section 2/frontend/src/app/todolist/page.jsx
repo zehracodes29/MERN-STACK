@@ -9,9 +9,22 @@ const TodoList = () => {
   const [taskList,setTaskList] = useState([
     {text : 'Learn Html', completed: true},
     {text : 'Learn Css', completed: false},
-    {text : 'Learn Javascript', completed: false}
+    {text : 'Learn Javascript', completed: false},
     {text : 'Learn React', completed: false}
   ]);
+
+  const addTask = (e) => {
+      if (e.key === 'Enter') {
+          console.log(e.target.value);
+          const newTask ={text:e.target.value, completed:false};
+          setTaskList([newTask, ...taskList]);
+          e.target.value = "";
+          
+      }
+  }
+            //console.log(taskList);
+
+
   return (
     <div className='min-h-screen p-10 bg-gray-100'>
         {/*<h1 className='text-3xl'>{count} </h1>
@@ -27,13 +40,35 @@ const TodoList = () => {
             <div className='rounded border mt-10'>
                 <div className='p-5'>
                     <input type="text"
+                    onKeyDown={addTask}
+                    placeholder='Add a new task'
                     className='border p-2 w-full rounded' />
 
                 </div>
                 <div className='border-t-1 p-5'>
-                    <p className='text-center font-bold text-gray-500'>
-                        No tasks to show here
-                    </p>
+                    {
+                        taskList.map((task,index) => {
+                            return <div key={index} className='flex justify-between items-center border-2 p-5 mb-3 rounded-lg'
+                            style={{backgroundColor: task.completed ? 'lightgreen' : 'lightpink'}}>
+                                <div>
+                                    <input type="checkbox"
+                                    checked={task.completed}
+                                    onChange={(e) => {
+                                        const temp = [...taskList];
+                                        temp[index].completed = e.target.checked;
+                                        setTaskList(temp);
+                                        
+                                    }}
+                                    
+                                    />
+                                    <p>{task.text}</p>
+                                </div>
+                                <button className='bg-red-600 text-white px-3 py-2 rounded'>
+                                    Delete
+                                </button>
+                            </div>
+                        })
+                    }
 
             </div>
         </div>
@@ -42,4 +77,4 @@ const TodoList = () => {
   )
 }
 
-export default TodoList
+export default TodoList;

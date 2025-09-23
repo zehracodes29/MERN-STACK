@@ -49,7 +49,7 @@ const TodoList = () => {
                     {
                         taskList.map((task,index) => {
                             return <div key={index} className='flex justify-between items-center border-2 p-5 mb-3 rounded-lg'
-                            style={{backgroundColor: task.completed ? 'lightgreen' : 'lightpink'}}>
+                            style={{backgroundColor: task.completed ? 'lightgreen' : 'lightpink', borderColor: task.completed ? 'green' : 'red'}}>
                                 <div>
                                     <input type="checkbox"
                                     checked={task.completed}

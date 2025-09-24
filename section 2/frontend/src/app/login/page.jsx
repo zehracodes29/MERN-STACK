@@ -1,13 +1,33 @@
+'use client'
+import { useFormik } from 'formik';
+
 import React from 'react'
 
 const LoginPage = () => {
+
+  const loginForm = useFormik({
+    initialValues: {
+    
+      email: '',
+      password: '',
+      
+    },
+    onSubmit: values => {
+      console.log(values);
+      //send values to backend
+    }
+
+  });
+
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12">
   <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
     <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">
       Login
     </h2>
-    <form className="mx-auto max-w-lg rounded-lg border">
+    <form
+      onSubmit={loginForm.onSubmit}
+     className="mx-auto max-w-lg rounded-lg border">
       <div className="flex flex-col gap-4 p-4 md:p-8">
         <div>
           <label
@@ -17,7 +37,10 @@ const LoginPage = () => {
             Email
           </label>
           <input
+            type="email"
             name="email"
+            onChange={loginForm.handleChange}
+            value={loginForm.values.email}
             className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
           />
         </div>
@@ -29,7 +52,10 @@ const LoginPage = () => {
             Password
           </label>
           <input
+            type="password"
             name="password"
+            onChange={loginForm.handleChange}
+            value={loginForm.values.password}
             className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
           />
         </div>

@@ -7,7 +7,7 @@ router.get('/add', (req,res) =>
     res.send("add response from product");
 });
 
-router.get('/getbyid', (req,res) => {
+router.post('/getbyid', (req,res) => {
     res.send("getbyid response from prodect");
 });
 

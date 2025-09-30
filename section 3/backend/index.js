@@ -6,6 +6,10 @@ const app = express();
 const port = 5000;
 
 //middleware
+app.use(express.json());
+//to handle json data in request body
+//without this line we cannot read json data from request body
+//converts json data to javascript object
 app.use('/user', UserRouter);
 
 app.use('/product', ProductRouter);

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const url = "mongodb+srv://rzehra942_db_user:ayra7007coco@cluster0.tzdejuy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const url = "mongodb+srv://rzehra942_db_user:ayra7007coco@cluster0.tzdejuy.mongodb.net/mydb330?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose.connect(url)
 //jab result ajaega tb chlega niche ka code

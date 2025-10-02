@@ -31,7 +31,15 @@ router.get('/getbyemail/:email',(req,res)=>{
     })
     });
 //getbycity
-
+router.get('/getbycity/:city',(req,res)=>{
+    Model.find({city:req.params.city})
+    .then((result)=>{
+        res.status(200).json(result);
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).json(err);
+    })
+});
 
 router.get('/getbyid', (req,res) =>
 {

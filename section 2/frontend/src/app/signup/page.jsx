@@ -1,6 +1,8 @@
 'use client'
+import axios from 'axios';
 import { useFormik } from 'formik';
 import React from 'react'
+import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 
 const SignupSchema = Yup.object().shape({
@@ -37,10 +39,27 @@ const SignupPage = () => {
     onSubmit: values => {
       console.log(values);
       //send values to backend
+      axios.post('http://localhost:5000/user/add',values)
+      .then((result) => {
+        toast.success("REGISTERED SUCCESSFULLY WOHOO!!!")
+      }).catch((err) => {
+        toast.error("SOME ERROR OCCURED");
+        console.log(err);
+      });
+      //fetch('https://localhost:5000/user/add',{
+       // method:'POST',
+       // headers:{
+        //  'Content-Type':'application/json'
+       // },
+       // body:JSON.stringify(values)
+      //})
     },
     validationSchema: SignupSchema,
 
   });
+
+  console.log(signupForm.errors);
+  
 
   return (
     <div className=''>
@@ -150,7 +169,7 @@ const SignupPage = () => {
                   <label htmlFor="confirm-password" className="block text-sm mb-2 dark:text-white">Confirm Password</label>
                   <div className="relative">
                     <input type="password"
-                      id="confirm-password"
+                      id="confirmPassword"
                       onChange={signupForm.handleChange}
                       value={signupForm.values.confirmPassword}
                       className="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" aria-describedby="confirm-password-error" />

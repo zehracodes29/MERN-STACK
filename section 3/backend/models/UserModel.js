@@ -11,6 +11,10 @@ module.exports = model('users', mySchema);
 //database operations: CRUD
 //create, read, update, delete
 
-    //cannot write anything without double qoutes in json file
-    //cannot have trailing commas in json file
-//cannot have comments in json file
+//cannot write anything without double qoutes in json file
+//cannot have trailing commas in json file
+//we cannot use comments in json file
+
+
+
+

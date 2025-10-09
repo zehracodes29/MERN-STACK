@@ -4,7 +4,13 @@ import { useFormik } from 'formik';
 import React from 'react'
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
+import { TailChase } from 'ldrs/react'
+import 'ldrs/react/TailChase.css'
+import { Router } from 'next/router';
 
+// Default values shown
+
+// Default values shown
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Too Short!')
@@ -36,15 +42,21 @@ const SignupPage = () => {
       password: '',
       confirmPassword: '',
     },
-    onSubmit: values => {
+    onSubmit: (values,{resetForm,setSubmitting}) => {
       console.log(values);
       //send values to backend
       axios.post('http://localhost:5000/user/add',values)
       .then((result) => {
-        toast.success("REGISTERED SUCCESSFULLY WOHOO!!!")
+        toast.success("REGISTERED SUCCESSFULLY WOHOO!!!");
+
+        resetForm();
+        Router.push("/login");
+        setSubmitting(false);
+        
       }).catch((err) => {
         toast.error("SOME ERROR OCCURED");
         console.log(err);
+        setSubmitting(false);
       });
       //fetch('https://localhost:5000/user/add',{
        // method:'POST',
@@ -200,7 +212,18 @@ const SignupPage = () => {
                 </div>
                 {/* End Checkbox */}
 
-                <button type="submit" className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">Sign up</button>
+                <button type="submit" className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">Sign up
+                                  {
+                  signupForm.isSubmitting?(
+                    <TailChase
+                      size="40"
+                      speed="1.75"
+                      color="black"
+                    />
+                  ) : ("Submit Form")
+                }
+                </button>
+
               </div>
             </form>
             {/* End Form */}

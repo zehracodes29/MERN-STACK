@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 import { TailChase } from 'ldrs/react'
 import 'ldrs/react/TailChase.css'
-import { Router } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 // Default values shown
 
@@ -35,6 +35,8 @@ const SignupSchema = Yup.object().shape({
 
 const SignupPage = () => {
 
+  const router = useRouter();
+
   const signupForm = useFormik({
     initialValues: {
       name: '',
@@ -50,7 +52,7 @@ const SignupPage = () => {
         toast.success("REGISTERED SUCCESSFULLY WOHOO!!!");
 
         resetForm();
-        Router.push("/login");
+        router.push("/login");
         setSubmitting(false);
         
       }).catch((err) => {

@@ -17,15 +17,17 @@ const ManageUser = () => {
     return (
         <div className='min-h-screen'>
             <div className='container mx-auto py-10'>
-                <h1 className='text-center font-bold text-3xl'>
+                <h1 className='text-center text-red-600 font-bold text-3xl'>
                          Manage Users
                 </h1>
-                <div className='mt-5 grid grid-cols-3'>
+                <div className=' border-amber-600 border-2 mt-5 grid grid-cols-3'>
                     {
                         userData.map((user) => {
-                            return <div key={user._id} className='border p-4'>
-                                <div className='flex'>
-                                    <User/>
+                            return <div key={user._id} className='border-2 border-amber-600 p-4'>
+                                <div className='text-bold text-2xl text-amber-800 flex'>
+                                    <div className='text-fuchsia-700 text-3xl text-bold'>                              
+                                          <User/>
+</div>
                                     <div>
                                         <p>{user.name}</p>
                                     </div>

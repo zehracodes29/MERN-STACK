@@ -1,9 +1,11 @@
 'use client'
 import axios from 'axios';
-import { User } from 'lucide-react';
+import { Pencil, Trash2, User } from 'lucide-react';
 import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast';
+import { motion } from 'motion/react';
 const ManageUser = () => {
-    const [userData,setUserData] = useState([]);
+    const [userData, setUserData] = useState([]);
 
     const fetchUserData = async () => {
         const res = await axios.get('http://localhost:5000/user/getall')
@@ -14,27 +16,54 @@ const ManageUser = () => {
         fetchUserData();
     }, []);//square bracket means it will run only once when component mounts
 
+    const deleteUser = async (id) => {
+        console.log(id);
+        const res = await axios.delete(`http://localhost:5000/user/delete/${id}`);
+        toast.success("User DEleted successfully");
+        fetchUserData();
+    }
+
     return (
-        <div className='min-h-screen'>
+        <div className='min-h-screen bg-gray-100'>
             <div className='container mx-auto py-10'>
-                <h1 className='text-center text-red-600 font-bold text-3xl'>
-                         Manage Users
+                <h1 className='text-center font-bold text-3xl'>
+                    Manage Users
                 </h1>
-                <div className=' border-amber-600 border-2 mt-5 grid grid-cols-3'>
+                <div className=' mt-5 grid grid-cols-3 gap-5'>
                     {
                         userData.map((user) => {
-                            return <div key={user._id} className='border-2 border-amber-600 p-4'>
-                                <div className='text-bold text-2xl text-amber-800 flex'>
-                                    <div className='text-fuchsia-700 text-3xl text-bold'>                              
-                                          <User/>
-</div>
+                            return <motion.div
+                                whileHover={{ scale: 1.05 }}
+                                initial={{ scale: 0.3, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+
+
+                                key={user._id} className='shadow-xl rounded-md bg-white p-4'>
+                                < div className=' flex gap-4 item-center'>
+                                    <User size={100} />
+
                                     <div>
-                                        <p>{user.name}</p>
+                                        <p>{user._id}</p>
+                                        <p className='text-xl font-bold'>{user.name}</p>
+                                        <p className='font-semibold'>{user.email}</p>
+                                        <p>{user.city}</p>
+                                        <div className='flex mt-5'>
+                                            <button onClick={() => { deleteUser(user._id) }} className='p-1 rounded text-white bg-red-500'>
+                                                <Trash2 />
+
+                                            </button>
+                                            <button className='p-2 rounded-md text-white bg-blue-500'>
+                                                <Pencil />
+
+                                            </button>
+
+
+                                        </div>
                                     </div>
 
                                 </div>
 
-                            </div>
+                            </motion.div>
 
                         })
                     }
@@ -45,4 +74,4 @@ const ManageUser = () => {
     )
 }
 
-export default ManageUser
+export default ManageUser;

@@ -4,6 +4,7 @@ import { Pencil, Trash2, User } from 'lucide-react';
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
 import { motion } from 'motion/react';
+import Link from 'next/link';
 const ManageUser = () => {
     const [userData, setUserData] = useState([]);
 
@@ -52,11 +53,10 @@ const ManageUser = () => {
                                                 <Trash2 />
 
                                             </button>
-                                            <button className='p-2 rounded-md text-white bg-blue-500'>
-                                                <Pencil />
+                                             <Link href={'/update-user/' + user._id}  className='p-2 rounded-md text-white bg-blue-500'>
+                                                 <Pencil />
 
-                                            </button>
-
+                                            </Link>
 
                                         </div>
                                     </div>

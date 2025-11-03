@@ -32,7 +32,6 @@ const Navbar = () => {
       Button
       <svg
         fill="none"
-        stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={2}

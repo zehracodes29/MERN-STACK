@@ -1,5 +1,7 @@
 const express = require('express');
 const Model = require('../models/UserModel');
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
 const router =express();
 
@@ -18,6 +20,31 @@ router.post('/add', (req,res) => {
         res.status(500).json(err);//500 means internal server error
     });
 
+});
+
+router.post('/authenticate',(req,res) => {
+    Model.findOne(req.body)
+    .then((result) => {
+        if(result){ //process login
+                     const{ _id, email} =result;
+
+                res.status(200).json({token});
+                const token = jwt.sign({_id,email} ,process.env.JWT_SECRET,{expiresIn:'1h'});//payload, secret key, options
+                (err, token) => {
+                    if(err){
+                        console.log(err);
+                        res.status(500).json(err);
+                    }
+                }
+            }
+            else{
+                res.status(401).json({message:'Invalid credentials'});//401 means unauthorized
+            }
+
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 //getbyemail

@@ -2,118 +2,120 @@ const express = require('express');
 const Model = require('../models/UserModel');
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
+const authorise = require('../middleware/auth');
 
-const router =express();
+const router = express();
 
-router.post('/add', (req,res) => {
+router.post('/add', (req, res) => {
     console.log(req.body);
     new Model(req.body).save()
-    .then((result) => {
-        res.status(200).json(result);//200 means ok, successful response from http(200-299)
-        //5 main categories of http status codes
-        //100-199 informational responses
-        //300-399 redirection messages
-        //400-499 client error responses
-        //500-599 server error responses
-        //https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
-    }).catch((err) => {
-        res.status(500).json(err);//500 means internal server error
-    });
+        .then((result) => {
+            res.status(200).json(result);//200 means ok, successful response from http(200-299)
+            //5 main categories of http status codes
+            //100-199 informational responses
+            //300-399 redirection messages
+            //400-499 client error responses
+            //500-599 server error responses
+            //https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
+        }).catch((err) => {
+            res.status(500).json(err);//500 means internal server error
+        });
 
 });
 
-router.post('/authenticate',(req,res) => {
+router.post('/authenticate', (req, res) => {
     Model.findOne(req.body)
-    .then((result) => {
-        if(result){ //process login
-                     const{ _id, email} =result;
+        .then((result) => {
+            if (result) { //process login
+                const { _id, email } = result;
 
-                res.status(200).json({token});
-                const token = jwt.sign({_id,email} ,process.env.JWT_SECRET,{expiresIn:'1h'});//payload, secret key, options
-                (err, token) => {
-                    if(err){
-                        console.log(err);
-                        res.status(500).json(err);
-                    }
-                }
+                jwt.sign({ _id, email }, process.env.JWT_SECRET, { expiresIn: '1h' },//payload, secret key, options
+                    (err, token) => {
+                        if (err) {
+                            console.log(err);
+                            res.status(500).json(err);
+                        }
+                        else {
+                            res.status(200).json({ token });
+                        }
+                    });
             }
-            else{
-                res.status(401).json({message:'Invalid credentials'});//401 means unauthorized
+            else {
+                res.status(401).json({ message: 'Invalid credentials' });//401 means unauthorized
             }
 
-    }).catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 //getbyemail
-router.get('/getbyemail/:email',(req,res)=>{
-    Model.find({email:req.params.email})//: denotes url parameter
-    .then((result)=>{
-        res.status(200).json(result);
-    }).catch((err)=>{
-        console.log(err);
-        res.status(500).json(err);
-    })
-    });
+router.get('/getbyemail/:email', (req, res) => {
+    Model.find({ email: req.params.email })//: denotes url parameter
+        .then((result) => {
+            res.status(200).json(result);
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        })
+});
 //getbycity
-router.get('/getbycity/:city',(req,res)=>{
-    Model.find({city:req.params.city})
-    .then((result)=>{
-        res.status(200).json(result);
-    }).catch((err)=>{
-        console.log(err);
-        res.status(500).json(err);
-    })
+router.get('/getbycity/:city', (req, res) => {
+    Model.find({ city: req.params.city })
+        .then((result) => {
+            res.status(200).json(result);
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        })
 });
 
-router.get('/getbyid/:id', (req,res) =>
-{
+router.get('/getbyid/:id', (req, res) => {
     Model.findById(req.params.id)
-    .then((result) => {
-        res.status(200).json(result);
-    })
-    .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+        .then((result) => {
+            res.status(200).json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 //delete operation
 
-router.delete('/delete/:id', (req,res) => {
+router.delete('/delete/:id', (req, res) => {
     Model.findByIdAndDelete(req.params.id)
-    .then((result) => {
-        res.status(200).json(result);
-    })
-    .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+        .then((result) => {
+            res.status(200).json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 //deleted 68dbbee6b1a3392223c68d29 this data using delete operation
 
 //update operation
-router.put('/update/:id',(req,res)=>{
-    Model.findByIdAndUpdate(req.params.id,req.body,{ new:true })
-    .then((result)=>{
-        res.status(200).json(result);
-    }).catch((err)=>{
-        console.log(err);
-        res.status(500).json(err);
-    });
+router.put('/update/:id', (req, res) => {
+    Model.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        .then((result) => {
+            res.status(200).json(result);
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
-
-router.get('/getall', (req,res) => {
+//authorization by verification
+router.get('/getall', authorise, (req, res) => {
     Model.find()//find is also an asynchronous operation
-    .then((result) => {
-        res.status(200).json(result);
-    }).catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+        .then((result) => {
+            res.status(200).json(result);
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 

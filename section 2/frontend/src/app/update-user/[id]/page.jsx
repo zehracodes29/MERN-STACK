@@ -10,7 +10,6 @@ import 'ldrs/react/TailChase.css'
 const UpdateUser = () => {
 
   const { id } = useParams();
-
   const [userData, setUserData] = useState(null);
   const router = useRouter();
 
